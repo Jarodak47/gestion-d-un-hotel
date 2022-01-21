@@ -1,1 +1,1 @@
-virtualenv\scripts\activate
+python\scripts\activate
