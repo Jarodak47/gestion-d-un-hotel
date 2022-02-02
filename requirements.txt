@@ -1,0 +1,11 @@
+alembic 
+uvicorn 
+fastapi 
+SQLAlchemy 
+watchgod 
+requests
+starlette
+pydantic
+cryptography
+bcrypt
+Jinja2
