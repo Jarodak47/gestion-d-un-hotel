@@ -1,15 +1,21 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import  Column, ForeignKey, Integer, String,Enum,types
 from sqlalchemy.orm import relationship
 
+from dataclasses import dataclass
 from database.session import Base
 
+class ChstatusType(str, Enum):
+# une chambre possède deux statuts : Ouvert et fermé.
+    OPENED = "OPENED"
+    CLOSED = "CLOSED"
 
+@dataclass    
 class Chambre(Base):
+
+    """ modèle de données pour l'enregistrement des chambres dans la base de données"""
     __tablename__ = "chambres"
 
     chId = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
-    chDescription = Column(String, unique=True, index=True)
-    hashed_password = Column(String)
-    is_active = Column(Boolean, default=True)
-
-    items = relationship("Item", back_populates="owner")
+    chDescription = Column(String, unique=False, index=True,nullable=True)
+    chPrice = Column(float,nullable=False)
+    chStatus = Column(types.Enum(ChstatusType), index=True, nullable=False, default=ChstatusType.OPENED)
