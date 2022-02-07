@@ -13,7 +13,7 @@ class ChstatusType(str, Enum):
 class Chambre(Base):
 
     """ modèle de données pour l'enregistrement des chambres dans la base de données"""
-    __tablename__ = "chambres"
+    __tablename__ = "chambre"
 
     chId = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
     chDescription = Column(String, unique=False, index=True,nullable=True)

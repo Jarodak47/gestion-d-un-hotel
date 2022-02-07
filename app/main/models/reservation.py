@@ -20,12 +20,11 @@ class Reservation(Base):
     __tablename__ = "reservation"
 
     rId = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
-    fId = Column(Integer, ForeignKey('food.fId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)  
-    dId = Column(Integer, ForeignKey('drink.dId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)  
-    sType = Column(types.Enum(stockType),nullable=True,unique=True)
-
-    feeder = relationship("Food", foreign_keys=[fId], backref="stock")
-    drinker = relationship("Drink", foreign_keys=[dId], backref="stock")
+    chId = Column(Integer, ForeignKey('chambre.chId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)  
+    cId = Column(Integer, ForeignKey('client.cId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)  
+    state = Column(types.Enum(ReservationState),nullable=True,unique=True,default=ReservationState.UNACTIVED)
+    chambrer = relationship("Chambre", foreign_keys=[chId], backref="reservation")
+    clienter = relationship("Client", foreign_keys=[cId], backref="reservation")
 
 
 
