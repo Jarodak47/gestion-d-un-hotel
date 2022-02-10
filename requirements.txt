@@ -9,3 +9,6 @@ pydantic
 cryptography
 bcrypt
 Jinja2
+celery
+jose
+passlib
