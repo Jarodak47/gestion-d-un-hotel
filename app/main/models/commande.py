@@ -1,3 +1,4 @@
+from datetime import datetime
 from app.main.models.food import Food
 from app.main.models.drink import Drink
 from sqlalchemy import  INTEGER, Column, ForeignKey, Integer, String,Enum, Table,types,MetaData
@@ -13,8 +14,9 @@ class Commande(Base):
     __tablename__ = "commande"
 
     coId = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
-    cId = Column(Integer, ForeignKey('client.cId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)  
-    sId = Column(Integer, ForeignKey('Stock.sId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)
+    cId = Column(Integer, ForeignKey('client.cId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False, index=True)  
+    sId = Column(Integer, ForeignKey('Stock.sId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False, index=True)
+    coDate = Column (datetime.now,nullable=False,index=True)
     coQte = Column(INTEGER ,index=True, nullable=True, default=0)  
     stocker = relationship("Stock", foreign_keys=[sId], backref="commande")
     clienter = relationship("Client", foreign_keys=[cId], backref="commande")

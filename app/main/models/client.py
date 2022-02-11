@@ -1,5 +1,7 @@
 import email
-from unicodedata import numeric
+from msilib import gen_uuid
+from uuid import UUID
+
 
 from sqlalchemy import  INTEGER, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
@@ -15,10 +17,11 @@ class Client(Base):
     __tablename__ = "client"
 
 
-    publicId = Column(String,nullable=False)
+    publicId = Column(str(UUID),nullable=False)
     cId = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
     name = Column(String,nullable=False)
     firstname = Column(String,nullable=False)
-    eMail = Column(email,nullable=False)
+    email = Column(email,nullable=False)
+    phoneNumber =Column(Integer,nullable=True,index=True)
     
     

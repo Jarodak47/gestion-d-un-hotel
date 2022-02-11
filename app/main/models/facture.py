@@ -1,3 +1,4 @@
+from datetime import datetime
 from app.main.models.food import Food
 from app.main.models.drink import Drink
 from sqlalchemy import  INTEGER, Column, ForeignKey, Integer, String,Enum, Table,types,MetaData
@@ -23,6 +24,8 @@ class Facture(Base):
     gId = Column(Integer, ForeignKey('gestionnaire.chId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)  
     cId = Column(Integer, ForeignKey('client.cId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)
     rId = Column(Integer, ForeignKey('reservation.rId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)
+    tPrice = Column(Integer,nullable=False ,default=100)
+    faDate = Column (datetime.now,nullable=False,index=True)
     coId = Column(Integer, ForeignKey('commande.coId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)  
     gestner = relationship("Gestionnaire", foreign_keys=[gId], backref="facture")
     clienter = relationship("Client", foreign_keys=[cId], backref="facture")

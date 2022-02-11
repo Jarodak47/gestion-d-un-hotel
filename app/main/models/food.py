@@ -12,7 +12,7 @@ class Food(Base):
     __tablename__ = "food"
 
     fId = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
-    fName = Column(String, unique=True, index=True,nullable=False)
+    fName = Column(String, unique=True,nullable=False)
     fPrice = Column(float,nullable=False,index=True)
-    fQte = Column(INTEGER ,index=True, nullable=True, default=0)
+    fQte = Column(INTEGER , nullable=True, default=0)
 

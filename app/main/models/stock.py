@@ -18,8 +18,8 @@ class Stock(Base):
     __tablename__ = "stock"
 
     sId = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
-    fId = Column(Integer, ForeignKey('food.fId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)  
-    dId = Column(Integer, ForeignKey('drink.dId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)  
+    fId = Column(Integer, ForeignKey('food.fId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False,index=True)  
+    dId = Column(Integer, ForeignKey('drink.dId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False,index=True)  
     sType = Column(types.Enum(stockType),nullable=True,unique=True)
 
     feeder = relationship("Food", foreign_keys=[fId], backref="stock")

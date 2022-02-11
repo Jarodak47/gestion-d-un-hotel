@@ -1,4 +1,5 @@
 import email
+from uuid import UUID
 
 from sqlalchemy import  INTEGER, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
@@ -14,9 +15,9 @@ class Gestionnaire(Base):
     __tablename__ = "food"
 
 
-    gPublicId = Column(String,nullable=False)
+    gPublicId = Column(str(UUID),nullable=False)
     gId = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
     name = Column(String,nullable=False)
     firstname = Column(String,nullable=False)
-    eMail = Column(email,nullable=False)
+    email = Column(email,nullable=False, unique=True)
     
