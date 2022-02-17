@@ -12,7 +12,7 @@ class Commande(Base):
 
     """ modèle de données pour les réservations  dans la base de données"""
     __tablename__ = "commande"
-
+    cTitle = Column(String)
     coId = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
     cId = Column(Integer, ForeignKey('client.cId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False, index=True)  
     sId = Column(Integer, ForeignKey('Stock.sId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False, index=True)

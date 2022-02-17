@@ -20,4 +20,5 @@ class Gestionnaire(Base):
     name = Column(String,nullable=False)
     firstname = Column(String,nullable=False)
     email = Column(email,nullable=False, unique=True)
+    pasword_hash =Column(String,nullable=False,index=True)
     

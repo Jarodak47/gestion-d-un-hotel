@@ -1,7 +1,5 @@
 from datetime import datetime
-from app.main.models.food import Food
-from app.main.models.drink import Drink
-from sqlalchemy import Column,  ForeignKey, Integer,Enum,types
+from sqlalchemy import Column, ForeignKey, Integer,Enum,types 
 from sqlalchemy.orm import relationship
 from dataclasses import dataclass
 from database.session import Base
@@ -24,7 +22,7 @@ class Reservation(Base):
     chId = Column(Integer, ForeignKey('chambre.chId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)  
     cId = Column(Integer, ForeignKey('client.cId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)  
     rDate = Column (datetime.now,nullable=False,index=True)
-    state = Column(types.Enum(ReservationState),nullable=True,unique=True,default=ReservationState.AWAITING)
+    rState = Column(types.Enum(ReservationState),nullable=True,unique=True,default=ReservationState.AWAITING)
     chambrer = relationship("Chambre", foreign_keys=[chId], backref="reservation")
     clienter = relationship("Client", foreign_keys=[cId], backref="reservation")
 
