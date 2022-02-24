@@ -11,8 +11,8 @@ class Food(Base):
     """ modèle de données pour l'enregistrement des plats de nourritures dans la base de données"""
     __tablename__ = "food"
 
-    fId = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
-    fName = Column(String, unique=True,nullable=False)
-    fPrice = Column(float,nullable=False,index=True)
-    fQte = Column(INTEGER , nullable=True, default=0)
+    id = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
+    name = Column(String, unique=True,nullable=False)
+    price = Column(float,nullable=False,index=True)
+    Qte = Column(INTEGER , nullable=True, default=0)
 

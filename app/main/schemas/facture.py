@@ -1,42 +1,39 @@
-from typing import List
+from typing import List, Optional
 from sqlalchemy import DateTime
 from pydantic import BaseModel
 from .base import DataList
 
 # Shared properties
-class ReservationBase(BaseModel):
-    faTitle: str
-    class Config:
-        orm_mode = True
+class FactureBase(BaseModel):
+    title : str
+    geId  : Optional[int]
+    resId : Optional[int]
+    cmdId : Optional[int]
 
 # Properties to receive via API on creation
-class ReservationCreate (ReservationBase):
+class FactureCreate (FactureBase):
     pass
 
 # Properties to receive via API on update
-class ReservationUpdate(ReservationBase):
+class FactureUpdate(FactureBase):
     faId : int
 
-class ReservationDelete(ReservationBase):
+class FactureDelete(FactureBase):
     faId : int
 
 # Additional Properties to store in db via API on creation
-class ReservationInDBBase(ReservationBase):
+class FactureInDBBase(FactureBase):
     faId : int 
-    gId : int
-    cId : int
-    rId : int
-    tPrice : int  
-    coId : int
-    faDatetime : DateTime
+    cost : int  
+    createdDate : DateTime
     class Config:
         orm_mode = True
 
 # Additional properties to return via API
-class Reservation(ReservationInDBBase):
+class Facture(FactureInDBBase):
     pass
 
-class ReservationList(DataList):
-    data: List[ReservationBase] = []
+class FactureList(DataList):
+    data: List[FactureBase] = []
 
     

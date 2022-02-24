@@ -18,7 +18,7 @@ class Client(Base):
 
 
     publicId = Column(str(UUID),nullable=False)
-    cId = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
+    id = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
     name = Column(String,nullable=False)
     firstname = Column(String,nullable=False)
     email = Column(email,nullable=False)

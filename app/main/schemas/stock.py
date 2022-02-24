@@ -5,14 +5,13 @@ from .base import DataList
 
 # Shared properties
 class StockBase(BaseModel):
-    sType : str(StockType)
-    fId : int
-    dId : int
-    sName : str
-    sPrice : float
-    sQte : int
-    class Config:
-        orm_mode = True
+    type : str(StockType)
+    #fId : int
+    #dId : int
+    title : str
+    price : float
+    Qte : int
+    
 
 # Properties to receive via API on creation
 class StockCreate(StockBase):
@@ -20,17 +19,23 @@ class StockCreate(StockBase):
 
 # Properties to receive via API on update
 class StockUpdate(StockBase):
-    sId : int
+    id : int
 
 # Properties to receive via API on deleting
 class StockDelete(StockBase):
-    sId : int
+    id : int
+
+
+
 
 # Additional Properties to store in db via API on creation
-class StocInDBBase(StockBase):
-    sId: int
+class StockInDBBase(StockBase):
+    id: int
     class Config:
         orm_mode = True
+
+class Stock(StockInDBBase):
+    pass
 
 class StockList(DataList):
     data: List[StockBase] = []

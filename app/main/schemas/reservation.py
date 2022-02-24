@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import List, Optional
 from sqlalchemy import DateTime
 
@@ -8,15 +9,12 @@ from .base import DataList
 
 # Shared properties
 class ReservationBase(BaseModel):
-    rDate : DateTime
-    chDescription : str
-    name : str
-    firstname : str
-    email : EmailStr
-    phoneNumber : Optional[str]
+    beginDate :DateTime
+    endDate : DateTime
+    chaId : int
+    clId : int
     total : int
-    class Config:
-        orm_mode = True
+    
 
 
 # Properties to receive via API on creation
@@ -26,17 +24,17 @@ class ReservationCreate (ReservationBase):
 
 # Properties to receive via API on update
 class ReservationUpdate(ReservationBase):
-    rId : int
+    resId : int
 
 class ReservationDelete(ReservationBase):
-    rId : int
+    resId : int
 
 
 
 # Additional Properties to store in db via API on creation
 class ReservationInDBBase(ReservationBase):
-    rState : str
-    rDatetime :DateTime
+    state : str
+    createdDate :DateTime
     class Config:
         orm_mode = True
 

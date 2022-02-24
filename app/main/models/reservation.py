@@ -18,13 +18,15 @@ class Reservation(Base):
     """ modèle de données pour les réservations  dans la base de données"""
     __tablename__ = "reservation"
 
-    rId = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
-    chId = Column(Integer, ForeignKey('chambre.chId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)  
-    cId = Column(Integer, ForeignKey('client.cId', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)  
-    rDate = Column (datetime.now,nullable=False,index=True)
-    rState = Column(types.Enum(ReservationState),nullable=True,unique=True,default=ReservationState.AWAITING)
-    chambrer = relationship("Chambre", foreign_keys=[chId], backref="reservation")
-    clienter = relationship("Client", foreign_keys=[cId], backref="reservation")
+    resId = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
+    chaId = Column(Integer, ForeignKey('chambre.id', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)  
+    clId = Column(Integer, ForeignKey('client.id', ondelete="CASCADE",onupdate="CASCADE"), nullable=False)  
+    createdDate = Column (datetime.now,nullable=False,index=True)
+    startDate = Column (datetime,nullable=False,index=True)
+    endDate =  Column (datetime,nullable=False,index=True)
+    state = Column(types.Enum(ReservationState),nullable=True,unique=True,default=ReservationState.AWAITING)
+    chambrer = relationship("Chambre", foreign_keys=[chaId], backref="reservation")
+    clienter = relationship("Client", foreign_keys=[clId], backref="reservation")
 
 
 
