@@ -2,10 +2,10 @@ from dataclasses import dataclass
 from sqlalchemy.sql import func
 from datetime import datetime
 from sqlalchemy.dialects.postgresql.json import JSONB
-from sqlalchemy import Column, ForeignKey, Integer, String, Text, DateTime
+from sqlalchemy import Column, Integer, String, Text, DateTime
 
 
-from app.main.models.database.baseClass import Base
+from app.main.models.database.base_class import Base
 
 
 # from hurry.filesize import size, alternative #Todo move that to the right new place 

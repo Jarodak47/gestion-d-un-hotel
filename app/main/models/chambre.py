@@ -1,8 +1,8 @@
-from sqlalchemy import  Column, ForeignKey, Integer, String,Enum,types
+from sqlalchemy import  Column, Integer, String,Enum,types
 from sqlalchemy.orm import relationship
 
 from dataclasses import dataclass
-from database.session import Base
+from app.main.models.database.base_class import Base
 
 class ChstatusType(str, Enum):
 # une chambre possède deux statuts : Ouvert et fermé.
@@ -17,5 +17,5 @@ class Chambre(Base):
 
     id = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
     description = Column(String, unique=False, index=True,nullable=True)
-    price = Column(float,nullable=False)
-    status = Column(types.Enum(ChstatusType), index=True, nullable=False, default=ChstatusType.OPENED)
+    price = Column(Integer,nullable=False)
+   # status = Column(types.Enum(ChstatusType), index=True, nullable=False, default=ChstatusType.OPENED)

@@ -15,6 +15,9 @@ class CRUDGestionnaire(CRUDBase[Gestionnaire, GestionnaireCreate, GestionnaireUp
     def get_by_id(self, db: Session, *, id: str) -> Optional[Gestionnaire]:
         return db.query(Gestionnaire).filter(Gestionnaire.id == id).first()
 
+    def get_by_public_id(self, db: Session, *, publicId: str) -> Optional[Gestionnaire]:
+        return db.query(Gestionnaire).filter(Gestionnaire.publicId == publicId).first()
+
     def create(self, db: Session, *, obj_in: GestionnaireCreate) -> Gestionnaire:
         db_obj = Gestionnaire(
             name =obj_in.name,

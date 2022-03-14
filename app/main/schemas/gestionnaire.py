@@ -1,5 +1,8 @@
-from typing import Optional
+from typing import Optional,List
 from pydantic import BaseModel, EmailStr
+from app.main import models
+from .base import DataList
+
 
 # Shared properties
 class GestionnaireBase(BaseModel):
@@ -26,6 +29,8 @@ class GestionnaireInDBBase(GestionnaireBase):
     class Config:
         orm_mode = True
 
+
+
 # Additional properties to return via API
 class Gestionnaire(GestionnaireInDBBase):
     pass
@@ -33,3 +38,23 @@ class Gestionnaire(GestionnaireInDBBase):
 # Additional properties stored in DB
 class GestionnaireInDB(GestionnaireInDBBase):
     pass
+# Gestionnaire authentification schema
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class GestionnaireAuthentification(BaseModel):
+
+    gestionnaire: Gestionnaire
+    token: Token
+
+    class Config:
+        orm_mode = True
+
+class TokenPayload(BaseModel):
+    sub: Optional[str] = None
+
+class GestionnaireList(DataList):
+
+    data: List[Gestionnaire] = []
