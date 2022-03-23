@@ -2,7 +2,7 @@ from sqlalchemy import  INTEGER, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from dataclasses import dataclass
-from database.session import Base
+from app.main.models.database.base_class import Base
 
 
 
@@ -16,5 +16,5 @@ class Drink(Base):
 
     Id = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
     name = Column(String, unique=True, index=True,nullable=False)
-    price = Column(float,nullable=False,index=True)
+    price = Column(INTEGER,nullable=False,index=True)
     Qte = Column(INTEGER ,index=True, nullable=True, default=0)

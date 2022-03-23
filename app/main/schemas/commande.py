@@ -1,4 +1,5 @@
-from typing import List
+from datetime import datetime
+from typing import List, Optional
 from sqlalchemy import DateTime
 from pydantic import BaseModel
 from .base import DataList
@@ -24,7 +25,7 @@ class CommandeDelete(CommandeBase):
 # Additional Properties to store in db via API on creation
 class CommandeInDBBase(CommandeBase):
     cmdId : int
-    date :DateTime
+    createDate :Optional[datetime]=None
     
     class Config:
         orm_mode = True

@@ -1,5 +1,4 @@
 from app.main.models import gestionnaire
-from app.main.models.gestionnaire import Gestionnaire
 
 from typing import Generator
 

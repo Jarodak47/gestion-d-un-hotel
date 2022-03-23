@@ -1,16 +1,19 @@
 from datetime import datetime
 from typing import List, Optional
+from fastapi import Body
 from sqlalchemy import DateTime
-
+from app.main import models
 from pydantic import BaseModel, EmailStr
+
+
 from .base import DataList
 
 
 
 # Shared properties
 class ReservationBase(BaseModel):
-    beginDate :DateTime
-    endDate : DateTime
+    beginDate :Optional[datetime]
+    endDate : Optional[datetime]
     chaId : int
     clId : int
     total : int
@@ -33,8 +36,9 @@ class ReservationDelete(ReservationBase):
 
 # Additional Properties to store in db via API on creation
 class ReservationInDBBase(ReservationBase):
-    state : str
-    createdDate :DateTime
+    state : models.ReservationState
+    resId :int
+    createdDate :Optional[datetime]=None
     class Config:
         orm_mode = True
 

@@ -7,7 +7,7 @@ from pydantic import BaseModel, EmailStr
 class ClientBase(BaseModel):
     name : str
     firstname : str
-    email : EmailStr
+    email : Optional[EmailStr]
     phoneNumber : Optional[str]
 
     #publicId = Column(str(UUID),nullable=False)

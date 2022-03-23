@@ -7,7 +7,7 @@ from sqlalchemy import  INTEGER, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from dataclasses import dataclass
-from database.session import Base
+from app.main.models.database.base_class import Base
 
 
 @dataclass    
@@ -21,7 +21,7 @@ class Client(Base):
     id = Column(Integer, primary_key=True, index=True,nullable=False, autoincrement=True)
     name = Column(String,nullable=False)
     firstname = Column(String,nullable=False)
-    email = Column(email,nullable=False)
+    email = Column(String(255), index=True, unique=False, nullable=True)
     phoneNumber =Column(Integer,nullable=True,index=True)
     
     

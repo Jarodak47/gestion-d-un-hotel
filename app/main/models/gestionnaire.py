@@ -1,7 +1,8 @@
 import email
 from uuid import UUID
-
-from sqlalchemy import   Boolean, Column, Integer, String
+from passlib.hash import sha256_crypt
+from sqlalchemy import  Column, Integer, String
+from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 
 from dataclasses import dataclass
@@ -23,4 +24,18 @@ class Gestionnaire(Base):
     hashedPassword =Column(String,nullable=False,index=True)
     #is_active = Column(Boolean(), default=True)
     #is_superuser = Column(Boolean(), default=False)
+
+    @property
+    def password(self):
+        raise AttributeError('password: write-only field')
+
+    @password.setter
+    def password(self, password):
+        self.hashedPassword = sha256_crypt.using(rounds=5000).hash(password)
+
+    def __repr__(self):
+        return "<User 'firstname:{}' 'lastname: {}'>".format(self.firstname, self.name)
+
+    
+
     

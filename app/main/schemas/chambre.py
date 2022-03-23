@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from app.main import models
 
 # Shared properties
 class ChambreBase(BaseModel):
@@ -12,11 +13,14 @@ class ChambreCreate(ChambreBase):
 # Properties to receive via API on update
 class ChambreUpdate(ChambreBase):
     id : int
+
+class ChambreDelete(ChambreBase):
+    id : int
     
 # Additional Properties to store in db via API on creation
 class ChambreInDBBase(ChambreBase):
     id: int
-    status:str
+    status:models.ChstatusType
 
     class Config:
         orm_mode = True

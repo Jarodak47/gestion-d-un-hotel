@@ -1,5 +1,5 @@
 from typing import List, Optional
-from sqlalchemy import DateTime
+from datetime import datetime
 from pydantic import BaseModel
 from .base import DataList
 
@@ -25,7 +25,7 @@ class FactureDelete(FactureBase):
 class FactureInDBBase(FactureBase):
     faId : int 
     cost : int  
-    createdDate : DateTime
+    createdDate : Optional[datetime]=None
     class Config:
         orm_mode = True
 

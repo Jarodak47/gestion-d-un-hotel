@@ -1,11 +1,13 @@
 from typing import List
+
+from app.main import models
 from ..models.stock import StockType
 from pydantic import BaseModel
 from .base import DataList
 
 # Shared properties
 class StockBase(BaseModel):
-    type : str(StockType)
+    type : models.StockType
     #fId : int
     #dId : int
     title : str

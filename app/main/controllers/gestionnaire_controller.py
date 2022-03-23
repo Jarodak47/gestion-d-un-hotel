@@ -18,14 +18,14 @@ router = APIRouter(
   )
 
 @router.post(" ", response_model=schemas.Gestionnaire)
-def create_user(
+def create_gestionnaire(
     *,
     db: session = Depends(dependencies.get_db),
     gestionnaire_in: schemas.GestionnaireCreate,
     # current_user: models.User = Depends(dependencies.TokenRequired(roles=["Administrator"])),
 ) -> Any:
     """
-    Create new user.
+    Create new gestionnaire.
     """
     gestionnaire = crud.gestionnaire.get_by_email(db, email=gestionnaire_in.email)
     if gestionnaire:
